@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>usability</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <script src="https://use.fontawesome.com/f3eb169b76.js"></script>
+  </head>
+  <body>
+    <div class="navbar top">
+        <span class="left nav-ham">
+            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+            <ul class="collapse hidden">
+                <li class="active" id="home"><a>Home</a></li>
+                <li id="about"><a>About</a></li>
+                <li id="preference"><a>Preference</a></li>
+                <li id="resources"><a>Resources</a></li>
+                <li id="contact"><a>Contact</a></li>
+            </ul>
+        </span>
+        
+    </div>
+
+    <section class="placeholder">
+        <p></p>
+    </section>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        var startingTime;
+        var finishingTime;
+        var isOpeningFirstTime = true;
+        var isTimeToFinish = true;
+        var isBackToHome = true;
+        var misClick = 0;
+        $(document).load(function() {
+            startingTime = Date.now();
+        });
+        $("i.fa").on("click", function() {
+            if ($("ul.collapse").hasClass("hidden")) {
+                $("ul.collapse").removeClass("hidden");
+            } else {
+                $("ul.collapse").addClass("hidden");
+            }
+        });
+        $(".placeholder p").text($(".active a").text());
+        $("#about").on("click", function() {
+            misClick = misClick + 1;
+        });
+        $("#").on("click", function() {
+            misClick = misClick + 1;
+        });
+        $("#contact").on("click", function() {
+            if (isOpeningFirstTime) {
+                $("#home").removeClass("active");
+                $("#contact").addClass("active");
+                isOpeningFirstTime = false;
+                $(".placeholder p").text($(".active a").text());
+                $("ul.collapse").addClass("hidden");
+            } else {
+                misClick = misClick + 1;
+            }
+        });
+        $("#preference").on("click", function() {
+            if (!isOpeningFirstTime && isTimeToFinish && !isBackToHome) {
+                $("#home").removeClass("active");
+                $("#preference").addClass("active");
+                $(".placeholder p").html("<a href = 'https://docs.google.com/forms/u/0/d/1OwsaZZa2W10NEl-sBff8z5S50nPbFTaQM4tCzxTOKVU/edit'>Take the Survey</a>");
+                $("ul.collapse").addClass("hidden");
+            }else {
+                misClick = misClick + 1;
+            }
+        });
+        $("#home").on("click", function() {
+            if (!isOpeningFirstTime && isBackToHome){
+                isBackToHome = false;
+                $("#home").addClass("active");
+                $("#contact").removeClass("active");
+                $(".placeholder p").text($(".active a").text());
+                $("ul.collapse").addClass("hidden");
+            } else {
+                misClick = misClick + 1;
+            }
+        });
+    </script>
+  </body>
+</html>
