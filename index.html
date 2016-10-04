@@ -35,11 +35,12 @@
     <script type="text/javascript">
         var startingTime;
         var finishingTime;
+        var totalTime;
         var isOpeningFirstTime = true;
         var isTimeToFinish = true;
         var isBackToHome = true;
         var misClick = 0;
-        $(document).load(function() {
+        $(document).ready(function() {
             startingTime = Date.now();
         });
         $("i.fa").on("click", function() {
@@ -73,6 +74,10 @@
                 $("#preference").addClass("active");
                 $(".placeholder p").html("<a href = 'https://docs.google.com/forms/u/0/d/1OwsaZZa2W10NEl-sBff8z5S50nPbFTaQM4tCzxTOKVU/edit'>Take the Survey</a>");
                 $("ul.collapse").addClass("hidden");
+                finishingTime = Date.now();
+                totalTime = finishingTime - startingTime;
+                $(".placeholder p").append("<p class='time'>time in ms: "+totalTime+"</p>");
+                $(".placeholder p.time").append("<p>misClick: "+misClick + "</p>");
             }else {
                 misClick = misClick + 1;
             }
