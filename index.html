@@ -27,7 +27,7 @@
     </div>
 
     <section class="placeholder">
-        <p></p>
+        <h4></h4>
     </section>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -50,36 +50,40 @@
                 $("ul.collapse").addClass("hidden");
             }
         });
-        $(".placeholder p").text($(".active a").text());
+        $(".placeholder h4").text($(".active a").text());
         $("#about").on("click", function() {
             misClick = misClick + 1;
+            $("ul.collapse").addClass("hidden");
         });
-        $("#").on("click", function() {
+        $("#resources").on("click", function() {
             misClick = misClick + 1;
+            $("ul.collapse").addClass("hidden");
         });
         $("#contact").on("click", function() {
             if (isOpeningFirstTime) {
                 $("#home").removeClass("active");
                 $("#contact").addClass("active");
                 isOpeningFirstTime = false;
-                $(".placeholder p").text($(".active a").text());
+                $(".placeholder h4").text($(".active a").text());
                 $("ul.collapse").addClass("hidden");
             } else {
                 misClick = misClick + 1;
+                $("ul.collapse").addClass("hidden");
             }
         });
         $("#preference").on("click", function() {
             if (!isOpeningFirstTime && isTimeToFinish && !isBackToHome) {
                 $("#home").removeClass("active");
                 $("#preference").addClass("active");
-                $(".placeholder p").html("<a href = 'https://docs.google.com/forms/u/0/d/1OwsaZZa2W10NEl-sBff8z5S50nPbFTaQM4tCzxTOKVU/edit'>Take the Survey</a>");
+                $(".placeholder h4").html("<a href = 'https://docs.google.com/forms/u/0/d/1OwsaZZa2W10NEl-sBff8z5S50nPbFTaQM4tCzxTOKVU/edit'>Take the Survey</a>");
                 $("ul.collapse").addClass("hidden");
                 finishingTime = Date.now();
                 totalTime = finishingTime - startingTime;
-                $(".placeholder p").append("<p class='time'>time in ms: "+totalTime+"</p>");
+                $(".placeholder").append("<p class='time'>time in ms: "+totalTime+"</p>");
                 $(".placeholder p.time").append("<p>misClick: "+misClick + "</p>");
             }else {
                 misClick = misClick + 1;
+                $("ul.collapse").addClass("hidden");
             }
         });
         $("#home").on("click", function() {
@@ -87,10 +91,11 @@
                 isBackToHome = false;
                 $("#home").addClass("active");
                 $("#contact").removeClass("active");
-                $(".placeholder p").text($(".active a").text());
+                $(".placeholder h4").text($(".active a").text());
                 $("ul.collapse").addClass("hidden");
             } else {
                 misClick = misClick + 1;
+                $("ul.collapse").addClass("hidden");
             }
         });
     </script>
