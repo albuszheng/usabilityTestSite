@@ -62,11 +62,17 @@ ul.collapse li {
 ul.collapse li:last-child {
     border-bottom: none;
 }
-section.placeholder {
+.top ~ section.placeholder {
     width: 200px;
     height: 200px;
     background-color: #ddd;
-    margin: 200px auto;
+    margin: 180px auto 100px auto;
+}
+.bottom ~ section.placeholder {
+    width: 200px;
+    height: 200px;
+    background-color: #ddd;
+    margin: 150px auto;
 }
 section h4 {
     padding-top: 80px;
